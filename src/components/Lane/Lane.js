@@ -1,11 +1,15 @@
+import Task from '../Tasks/Task';
 import './Lane.css';
 
-function Lane({ title }) {
+function Lane({ title, loading, error, tasks }) {
   return (
     <div className='Lane-wrapper'>
       <h2>{title}</h2>
+      {loading || error ? (<span>{error || 'Loading...'}</span>) :
+        (tasks.map((task) =>
+          <Task key={task.id} id={task.id} title={task.title} body={task.body}></Task>
+        ))}
     </div>
   );
 }
-
 export default Lane;
